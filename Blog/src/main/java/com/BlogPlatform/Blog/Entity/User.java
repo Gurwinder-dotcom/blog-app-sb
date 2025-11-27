@@ -27,9 +27,8 @@ public class User {
     @Column
     private String password;
 
-    @Column(name = "about",columnDefinition = "TEXT")
+    @Column(name = "about", columnDefinition = "TEXT")
     private String about;
-
 
     //    one User can write many blog
     @OneToMany(mappedBy = "user")

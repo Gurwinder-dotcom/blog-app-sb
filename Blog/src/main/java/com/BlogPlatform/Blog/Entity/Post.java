@@ -1,6 +1,9 @@
 package com.BlogPlatform.Blog.Entity;
+
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,19 +16,19 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",updatable = false,nullable = false)
+    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "title",nullable = false)
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "body",nullable = false, columnDefinition = "TEXT")
+    @Column(name = "body", nullable = false, columnDefinition = "TEXT")
     private String body;
 
-    @Column(name = "createdAt",nullable = false)
+    @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updatedAt",nullable = false)
+    @Column(name = "updatedAt", nullable = false)
     private LocalDateTime updatedAt;
 
 
@@ -40,7 +43,7 @@ public class Post {
     private List<Comment> comments;
 
     @PrePersist
-    protected void createdOn(){
-        createdAt=LocalDateTime.now();
+    protected void createdOn() {
+        createdAt = LocalDateTime.now();
     }
 }

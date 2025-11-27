@@ -20,7 +20,7 @@ public class UserDtoMapper {
 //        user.setEmail(userDto.getEmail());
 //        user.setPassword(userDto.getPassword());
 //        user.setAbout(userDto.getAbout());
-        return modelMapper.map(userDto,User.class);
+        return modelMapper.map(userDto, User.class);
     }
 
     public UserDto toDto(User user) {

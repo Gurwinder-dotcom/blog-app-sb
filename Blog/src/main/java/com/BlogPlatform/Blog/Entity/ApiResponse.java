@@ -1,4 +1,5 @@
 package com.BlogPlatform.Blog.Entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
