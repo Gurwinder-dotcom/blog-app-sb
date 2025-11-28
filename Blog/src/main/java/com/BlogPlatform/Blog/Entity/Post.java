@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Post")
+@Table(name = "post")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,7 @@ public class Post {
     @Column(name = "body", nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    private String imageName;
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
