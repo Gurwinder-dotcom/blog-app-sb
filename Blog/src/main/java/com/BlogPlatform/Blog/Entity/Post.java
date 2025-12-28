@@ -19,19 +19,20 @@ public class Post {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, length = 100)
     private String title;
 
-    @Column(name = "body", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "body", nullable = false, columnDefinition = "TEXT",length = 1000)
     private String body;
 
     private String imageName;
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updatedAt", nullable = false)
-    private LocalDateTime updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     //    one Blog belong to one user  --> one to one
     @ManyToOne
@@ -43,8 +44,4 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
-    @PrePersist
-    protected void createdOn() {
-        createdAt = LocalDateTime.now();
-    }
 }

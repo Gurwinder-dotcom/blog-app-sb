@@ -18,7 +18,7 @@ public class User {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "name",nullable = false,length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
     @Column
@@ -31,7 +31,7 @@ public class User {
     private String about;
 
     //    one User can write many blog
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Post> postList;
 
 
