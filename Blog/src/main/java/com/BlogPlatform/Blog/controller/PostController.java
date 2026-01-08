@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api")
 public class PostController {
@@ -26,14 +24,19 @@ public class PostController {
 
     //    get By User
     @GetMapping("/user/{userId}/posts")
-    public ResponseEntity<List<PostDto>> getPostsByUser(@PathVariable Long userId) {
-        return new ResponseEntity<>(postService.getPostsByUser(userId), HttpStatus.OK);
+    public ResponseEntity<PostResponse> getPostsByUser(@PathVariable Long userId
+            , @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber
+            , @RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize
+    ) {
+        return new ResponseEntity<>(postService.getPostsByUser(userId, pageNumber, pageSize), HttpStatus.OK);
     }
 
     //    get By Category
     @GetMapping("/category/{categoryId}/posts")
-    public ResponseEntity<List<PostDto>> getPostsByCategory(@PathVariable Long categoryId) {
-        return ResponseEntity.ok(postService.getPostsByCategory(categoryId));
+    public ResponseEntity<PostResponse> getPostsByCategory(@PathVariable Long categoryId
+            , @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber
+            , @RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize) {
+        return ResponseEntity.ok(postService.getPostsByCategory(categoryId, pageNumber, pageSize));
     }
 
     //    get All
