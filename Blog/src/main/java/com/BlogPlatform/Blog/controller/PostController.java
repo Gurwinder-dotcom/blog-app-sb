@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class PostController {
@@ -48,9 +50,9 @@ public class PostController {
             @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize,
             @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy
-            ,@RequestParam(value = "sortDir",defaultValue = "acs",required = false) String sortDir
+            , @RequestParam(value = "sortDir", defaultValue = "acs", required = false) String sortDir
     ) {
-        return new ResponseEntity<>(postService.getAllPost(pageNumber, pageSize, sortBy,sortDir), HttpStatus.OK);
+        return new ResponseEntity<>(postService.getAllPost(pageNumber, pageSize, sortBy, sortDir), HttpStatus.OK);
     }
 
     //    get Post By I'd
@@ -70,6 +72,11 @@ public class PostController {
     @PutMapping("/posts/{postId}")
     public ResponseEntity<PostDto> updatePost(@PathVariable Long postId, @RequestBody PostDto postDto) {
         return new ResponseEntity<>(postService.updatePost(postId, postDto), HttpStatus.OK);
+    }
+
+    @GetMapping("/posts/search/{keywords}")
+    public ResponseEntity<List<PostDto>> searchByTitle(@PathVariable("keywords") String keywords) {
+        return new ResponseEntity<>(postService.searchPosts(keywords),HttpStatus.OK);
     }
 }
 
