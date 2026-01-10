@@ -16,16 +16,16 @@ public interface PostService {
     void deletePost(Long postId);
 
     //    get All Posts
-    PostResponse getAllPost(Integer pageNumber, Integer pageSize);
+    PostResponse getAllPost(Integer pageNumber, Integer pageSize,String sortBy,String sortDir);
 
     //    get Single Post
     PostDto getPostById(Long postId);
 
     //    get All post by Category
-    PostResponse getPostsByCategory(Long categoryId, Integer pageNumber, Integer pageSize);
+    PostResponse getPostsByCategory(Long categoryId, Integer pageNumber, Integer pageSize,String sortBy ,String sortDir);
 
     //    get All Post by User
-    PostResponse getPostsByUser(Long userId, Integer pageNumber, Integer pageSize);
+    PostResponse getPostsByUser(Long userId, Integer pageNumber, Integer pageSize,String sortBy,String sortDir);
 
     //    searchPosts
     List<PostDto> searchPosts(String keyword);
