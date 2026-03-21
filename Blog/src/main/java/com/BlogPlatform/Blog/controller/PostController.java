@@ -1,5 +1,6 @@
 package com.BlogPlatform.Blog.controller;
 
+import com.BlogPlatform.Blog.Config.AppConstant;
 import com.BlogPlatform.Blog.Entity.ApiResponse;
 import com.BlogPlatform.Blog.Payloads.PostDto;
 import com.BlogPlatform.Blog.Payloads.PostResponse;
@@ -27,30 +28,30 @@ public class PostController {
     //    get By User
     @GetMapping("/user/{userId}/posts")
     public ResponseEntity<PostResponse> getPostsByUser(@PathVariable Long userId
-            , @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber
-            , @RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize
-            , @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy
-            , @RequestParam(value = "sortDir", defaultValue = "acs", required = false) String sortDir) {
+            , @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber
+            , @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize
+            , @RequestParam(value = "sortBy", defaultValue = AppConstant.SORT_BY, required = false) String sortBy
+            , @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir) {
         return new ResponseEntity<>(postService.getPostsByUser(userId, pageNumber, pageSize, sortBy, sortDir), HttpStatus.OK);
     }
 
     //    get By Category
     @GetMapping("/category/{categoryId}/posts")
     public ResponseEntity<PostResponse> getPostsByCategory(@PathVariable Long categoryId
-            , @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber
-            , @RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize
-            , @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy
-            , @RequestParam(value = "sortDir", defaultValue = "acs", required = false) String sortDir) {
+            , @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber
+            , @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize
+            , @RequestParam(value = "sortBy", defaultValue = AppConstant.SORT_BY, required = false) String sortBy
+            , @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir) {
         return ResponseEntity.ok(postService.getPostsByCategory(categoryId, pageNumber, pageSize, sortBy, sortDir));
     }
 
     //    get All
     @GetMapping("/posts")
     public ResponseEntity<PostResponse> getAllPost(
-            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-            @RequestParam(value = "pageSize", defaultValue = "1", required = false) Integer pageSize,
-            @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy
-            , @RequestParam(value = "sortDir", defaultValue = "acs", required = false) String sortDir
+            @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstant.SORT_BY, required = false) String sortBy
+            , @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
     ) {
         return new ResponseEntity<>(postService.getAllPost(pageNumber, pageSize, sortBy, sortDir), HttpStatus.OK);
     }
@@ -76,7 +77,7 @@ public class PostController {
 
     @GetMapping("/posts/search/{keywords}")
     public ResponseEntity<List<PostDto>> searchByTitle(@PathVariable("keywords") String keywords) {
-        return new ResponseEntity<>(postService.searchPosts(keywords),HttpStatus.OK);
+        return new ResponseEntity<>(postService.searchPosts(keywords), HttpStatus.OK);
     }
 }
 
